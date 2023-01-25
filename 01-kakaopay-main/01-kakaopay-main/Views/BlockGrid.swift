@@ -11,10 +11,8 @@ struct BlockGrid: View {
     @EnvironmentObject private var model: Model
     
     private var blocks: [Block?] {
-        if model.blocks.count >= BlockGridLayout.subviewCount {
-            return Array(model.blocks.prefix(BlockGridLayout.subviewCount))
-        }
-        return model.blocks + Array(repeating: nil, count: BlockGridLayout.subviewCount - model.blocks.count)
+        model.blocks + Array(repeating: nil,
+                             count: (BlockGridLayout.numberOfSubviewsInGroup - model.blocks.count % BlockGridLayout.numberOfSubviewsInGroup))
     }
     
     var body: some View {

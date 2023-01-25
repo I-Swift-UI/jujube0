@@ -9,15 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        GeometryReader { geometry in
-            VStack {
-                Spacer()
-                BlockGrid()
-                    .frame(height: geometry.size.width * 1.2)
-                Spacer()
-            }
-            .background(.black)
+        VStack {
+            Spacer()
+            BlockGrid()
+            Spacer()
         }
+        .background(.black)
     }
 }
 
