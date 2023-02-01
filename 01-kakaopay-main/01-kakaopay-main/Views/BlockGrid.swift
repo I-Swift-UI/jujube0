@@ -11,8 +11,7 @@ struct BlockGrid: View {
     @EnvironmentObject private var model: Model
     
     private var blocks: [Block?] {
-        model.blocks + Array(repeating: nil,
-                             count: (BlockGridLayout.numberOfSubviewsInGroup - model.blocks.count % BlockGridLayout.numberOfSubviewsInGroup))
+        model.blocks
     }
     
     var body: some View {
