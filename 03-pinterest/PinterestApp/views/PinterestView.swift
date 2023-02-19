@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PinterestView: View {
     @ObservedObject var pinListViewModel: PinListViewModel
+    @ObservedObject var likedPinListViewModel: LikedPinListViewModel
     
     private let columnSize = 2
     
@@ -28,7 +29,14 @@ struct PinterestView: View {
             HStack(alignment: .top) {
                 ForEach(0..<columnSize, id: \.self) { i in
                     PinterestLazyStackView(pinList: pinModelList[i],
-                                           didReachEnd: $didReachEnd)
+                                           likeButtonClicked: { pinModel, liked in
+                        if liked {
+                            likedPinListViewModel.likedPinList.append(pinModel)
+                        } else {
+                            likedPinListViewModel.likedPinList.removeAll { $0.id == pinModel.id }
+                        }
+                    },
+                                            didReachEnd: $didReachEnd)
                 }
             }
             .onChange(of: didReachEnd, perform: { value in
@@ -49,7 +57,6 @@ struct PinterestView: View {
 
 struct PinterestView_Previews: PreviewProvider {
     static var previews: some View {
-        PinterestView(pinListViewModel: .init())
-            
+        PinterestView(pinListViewModel: .init(), likedPinListViewModel: .init())
     }
 }

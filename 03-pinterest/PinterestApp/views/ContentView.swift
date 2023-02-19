@@ -10,16 +10,14 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject private var pinListViewModel = PinListViewModel()
+    @StateObject private var likedPinListViewModel = LikedPinListViewModel()
     
     var body: some View {
         TabView {
-            PinterestView(pinListViewModel: pinListViewModel)
+            PinterestView(pinListViewModel: pinListViewModel,
+                          likedPinListViewModel: likedPinListViewModel)
                 .tabItem {
                     Image(systemName: "doc.text.image")
-                }
-            PinterestView(pinListViewModel: pinListViewModel)
-                .tabItem {
-                    Image(systemName: "heart.circle")
                 }
         }
     }

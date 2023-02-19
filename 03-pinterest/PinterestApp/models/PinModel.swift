@@ -51,6 +51,15 @@ class PinListViewModel: ObservableObject {
     }
 }
 
+final class LikedPinListViewModel: ObservableObject {
+    @Published
+    var likedPinList: [PinModel]
+    
+    init(likedPinList: [PinModel] = []) {
+        self.likedPinList = likedPinList
+    }
+}
+
 extension PinModel {
     static var sampleListData: [Self] {
         [PinModel(widthHeightRatio: 2.0),

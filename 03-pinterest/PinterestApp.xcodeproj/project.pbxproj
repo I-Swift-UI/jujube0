@@ -17,6 +17,7 @@
 		3BC5C41C29A0D9B300B93748 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC5C41B29A0D9B300B93748 /* APIRequest.swift */; };
 		3BC5C41F29A20BB300B93748 /* ImageSearchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC5C41E29A20BB300B93748 /* ImageSearchRequest.swift */; };
 		3BC5C42329A20F8900B93748 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC5C42229A20F8900B93748 /* Config.swift */; };
+		3BC5C42B29A2535700B93748 /* PinItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC5C42A29A2535700B93748 /* PinItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		3BC5C42029A20E0B00B93748 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		3BC5C42129A20F0B00B93748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3BC5C42229A20F8900B93748 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		3BC5C42A29A2535700B93748 /* PinItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				3BA9FE95298D360B00F0378F /* ContentView.swift */,
 				3BA9FEA5298D5DAE00F0378F /* PinterestLazyStackView.swift */,
 				3BA9FEA92991641A00F0378F /* PinterestView.swift */,
+				3BC5C42A29A2535700B93748 /* PinItemView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BA9FEA4298D5CA400F0378F /* PinModel.swift in Sources */,
+				3BC5C42B29A2535700B93748 /* PinItemView.swift in Sources */,
 				3BC5C41C29A0D9B300B93748 /* APIRequest.swift in Sources */,
 				3BA9FE96298D360B00F0378F /* ContentView.swift in Sources */,
 				3BA9FEA6298D5DAE00F0378F /* PinterestLazyStackView.swift in Sources */,

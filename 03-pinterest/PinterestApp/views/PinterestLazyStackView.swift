@@ -11,12 +11,17 @@ struct PinterestLazyStackView: View {
     var pinList: [PinModel]
     private let spacing = 10.0
     
+    var likeButtonClicked: (PinModel, Bool) -> Void
+    
     @Binding var didReachEnd: Bool
     
     var body: some View {
         LazyVStack(spacing: spacing) {
             ForEach(pinList) { item in
-                PinItemView(imageUrl: item.image)
+                PinItemView(imageUrl: item.image,
+                            likeButtonClicked: { liked in
+                    likeButtonClicked(item, liked)
+                })
                     .aspectRatio(item.widthHeightRatio, contentMode: .fill)
                 
             }
@@ -33,23 +38,7 @@ struct PinterestLazyStackView: View {
 struct PinterestLazyStackView_Previews: PreviewProvider {
     static var previews: some View {
         PinterestLazyStackView(pinList: PinModel.sampleListData,
+                               likeButtonClicked: { _, _ in },
                                didReachEnd: .constant(false))
-    }
-}
-
-struct PinItemView: View {
-    let widthHeightRatio: CGFloat = 1.0
-    let imageUrl: String
-    
-    var body: some View {
-        ZStack {
-            AsyncImage(url: URL(string: imageUrl),
-                       content: { image in
-                image.resizable()
-            }, placeholder: {
-                Color.gray
-            })
-            .cornerRadius(20.0)
-        }
     }
 }
