@@ -45,8 +45,8 @@ extension ImageSearchItem {
         }
         return CGFloat(sizewidth)/CGFloat(sizeheight)
     }
-    func toModel() -> PinModel {
-        PinModel(widthHeightRatio: widthHeightRatio, image: link)
+    func toModel() -> PinItem {
+        PinItem(widthHeightRatio: widthHeightRatio, image: link)
     }
 }
 

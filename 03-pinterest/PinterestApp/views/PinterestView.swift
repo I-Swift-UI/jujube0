@@ -13,8 +13,8 @@ struct PinterestView: View {
     
     private let columnSize = 2
     
-    private var pinModelList: [[PinModel]] {
-        var list: [[PinModel]] = .init(repeating: [], count: columnSize)
+    private var pinModelList: [[PinItem]] {
+        var list: [[PinItem]] = .init(repeating: [], count: columnSize)
         pinListViewModel.pinList.enumerated().forEach { i, item in
             let listIndex = i % columnSize
             list[listIndex].append(item)
@@ -29,11 +29,11 @@ struct PinterestView: View {
             HStack(alignment: .top) {
                 ForEach(0..<columnSize, id: \.self) { i in
                     PinterestLazyStackView(pinList: pinModelList[i],
-                                           likeButtonClicked: { pinModel, liked in
+                                           likeButtonClicked: { item, liked in
                         if liked {
-                            likedPinListViewModel.likedPinList.append(pinModel)
+                            likedPinListViewModel.addPinItem(item)
                         } else {
-                            likedPinListViewModel.likedPinList.removeAll { $0.id == pinModel.id }
+                            likedPinListViewModel.removePinItem(item)
                         }
                     },
                                             didReachEnd: $didReachEnd)
@@ -48,6 +48,7 @@ struct PinterestView: View {
         }
         .padding(4)
         .onAppear {
+            guard didReachEnd else { return }
             pinListViewModel.request() {
                 didReachEnd = false
             }

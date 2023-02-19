@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ContentView: View {
     
-    @StateObject private var pinListViewModel = PinListViewModel()
     @StateObject private var likedPinListViewModel = LikedPinListViewModel()
+    @StateObject private var pinListViewModel = PinListViewModel()
     
     var body: some View {
         TabView {
@@ -19,7 +20,16 @@ struct ContentView: View {
                 .tabItem {
                     Image(systemName: "doc.text.image")
                 }
+            PinLikedListView(likedPinListViewModel: likedPinListViewModel)
+                .tabItem {
+                    Image(systemName: "heart.circle")
+                }
         }
+        .onReceive(likedPinListViewModel.likedPinItemChangedPublisher, perform: { id in
+            if let index = pinListViewModel.pinList.firstIndex(where: { $0.id == id }) {
+                pinListViewModel.pinList[index].liked.toggle()
+            }
+        })
     }
 }
 
