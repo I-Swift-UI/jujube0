@@ -38,6 +38,18 @@ struct ImageSearchItem: Decodable {
     let sizewidth: String
 }
 
+extension ImageSearchItem {
+    var widthHeightRatio: CGFloat {
+        guard let sizeheight = Int(sizeheight), let sizewidth = Int(sizewidth) else {
+            return 1.0
+        }
+        return CGFloat(sizewidth)/CGFloat(sizeheight)
+    }
+    func toModel() -> PinModel {
+        PinModel(widthHeightRatio: widthHeightRatio, image: link)
+    }
+}
+
 extension Int {
     var stringValue: String {
         String(self)

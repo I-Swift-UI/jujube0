@@ -10,15 +10,15 @@ import SwiftUI
 struct PinterestView: View {
     @ObservedObject var pinListViewModel: PinListViewModel
     
-    private var firstPinList: [PinModel] {
-        pinListViewModel.pinList.enumerated()
-            .filter { index, _ in index % 2 == 0 }
-            .map { $1 }
-    }
-    private var secondPinList: [PinModel] {
-        pinListViewModel.pinList.enumerated()
-            .filter { index, _ in index % 2 != 0 }
-            .map { $1 }
+    private let columnSize = 2
+    
+    private var pinModelList: [[PinModel]] {
+        var list: [[PinModel]] = .init(repeating: [], count: columnSize)
+        pinListViewModel.pinList.enumerated().forEach { i, item in
+            let listIndex = i % columnSize
+            list[listIndex].append(item)
+        }
+        return list
     }
     
     @State var didReachEnd = true
@@ -26,8 +26,10 @@ struct PinterestView: View {
     var body: some View {
         ScrollView {
             HStack(alignment: .top) {
-                PinterestLazyStackView(pinList: firstPinList, didReachEnd: $didReachEnd)
-                PinterestLazyStackView(pinList: secondPinList, didReachEnd: $didReachEnd)
+                ForEach(0..<columnSize, id: \.self) { i in
+                    PinterestLazyStackView(pinList: pinModelList[i],
+                                           didReachEnd: $didReachEnd)
+                }
             }
             .onChange(of: didReachEnd, perform: { value in
                 guard didReachEnd else { return }

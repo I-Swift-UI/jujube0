@@ -11,9 +11,9 @@ import Combine
 struct PinModel: Identifiable {
     let id: UUID
     let widthHeightRatio: CGFloat
-    let image: String?
+    let image: String
     
-    init(widthHeightRatio: CGFloat = 1.0, image: String? = nil) {
+    init(widthHeightRatio: CGFloat = 1.0, image: String = "") {
         self.id = UUID()
         self.widthHeightRatio = widthHeightRatio
         self.image = image
@@ -23,8 +23,6 @@ struct PinModel: Identifiable {
 class PinListViewModel: ObservableObject {
     @Published
     var pinList: [PinModel]
-    var cancellables: Set<AnyCancellable> = []
-    
     var page = 0
     
     init() {
@@ -38,21 +36,16 @@ class PinListViewModel: ObservableObject {
     }
     
     func request(completion: (() -> Void)? = nil) {
-        ImageSearchRequest(query: "카즈하")
+        ImageSearchRequest(query: "카즈하", page: page)
             .request()
-            .sink(receiveCompletion: { error in
-                print(error)
-            }, receiveValue: {
-                print($0.items.count)
-            })
-            .store(in: &cancellables)
-        
-        getSampleData()
-            .map({
+            .map {
                 completion?()
-                return self.pinList + $0
-            })
+                return self.pinList + $0.items.map { $0.toModel() }
+            }
+            .replaceError(with: [])
+            .receive(on: DispatchQueue.main)
             .assign(to: &$pinList)
+
         print("current page = \(page)")
         page += 1
     }

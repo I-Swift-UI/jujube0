@@ -12,7 +12,16 @@ struct ContentView: View {
     @StateObject private var pinListViewModel = PinListViewModel()
     
     var body: some View {
-        PinterestView(pinListViewModel: pinListViewModel)
+        TabView {
+            PinterestView(pinListViewModel: pinListViewModel)
+                .tabItem {
+                    Image(systemName: "doc.text.image")
+                }
+            PinterestView(pinListViewModel: pinListViewModel)
+                .tabItem {
+                    Image(systemName: "heart.circle")
+                }
+        }
     }
 }
 
