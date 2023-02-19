@@ -11,16 +11,19 @@ import Combine
 struct PinModel: Identifiable {
     let id: UUID
     let widthHeightRatio: CGFloat
+    let image: String?
     
-    init(widthHeightRatio: CGFloat = 1.0) {
+    init(widthHeightRatio: CGFloat = 1.0, image: String? = nil) {
         self.id = UUID()
         self.widthHeightRatio = widthHeightRatio
+        self.image = image
     }
 }
 
 class PinListViewModel: ObservableObject {
     @Published
     var pinList: [PinModel]
+    var cancellables: Set<AnyCancellable> = []
     
     var page = 0
     
@@ -35,6 +38,15 @@ class PinListViewModel: ObservableObject {
     }
     
     func request(completion: (() -> Void)? = nil) {
+        ImageSearchRequest(query: "카즈하")
+            .request()
+            .sink(receiveCompletion: { error in
+                print(error)
+            }, receiveValue: {
+                print($0.items.count)
+            })
+            .store(in: &cancellables)
+        
         getSampleData()
             .map({
                 completion?()

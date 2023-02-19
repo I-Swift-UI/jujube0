@@ -14,6 +14,9 @@
 		3BA9FEA4298D5CA400F0378F /* PinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FEA3298D5CA400F0378F /* PinModel.swift */; };
 		3BA9FEA6298D5DAE00F0378F /* PinterestLazyStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FEA5298D5DAE00F0378F /* PinterestLazyStackView.swift */; };
 		3BA9FEAA2991641A00F0378F /* PinterestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FEA92991641A00F0378F /* PinterestView.swift */; };
+		3BC5C41C29A0D9B300B93748 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC5C41B29A0D9B300B93748 /* APIRequest.swift */; };
+		3BC5C41F29A20BB300B93748 /* ImageSearchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC5C41E29A20BB300B93748 /* ImageSearchRequest.swift */; };
+		3BC5C42329A20F8900B93748 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC5C42229A20F8900B93748 /* Config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +28,11 @@
 		3BA9FEA3298D5CA400F0378F /* PinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinModel.swift; sourceTree = "<group>"; };
 		3BA9FEA5298D5DAE00F0378F /* PinterestLazyStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLazyStackView.swift; sourceTree = "<group>"; };
 		3BA9FEA92991641A00F0378F /* PinterestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestView.swift; sourceTree = "<group>"; };
+		3BC5C41B29A0D9B300B93748 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		3BC5C41E29A20BB300B93748 /* ImageSearchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchRequest.swift; sourceTree = "<group>"; };
+		3BC5C42029A20E0B00B93748 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		3BC5C42129A20F0B00B93748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3BC5C42229A20F8900B93748 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +49,7 @@
 		3BA9FE87298D360A00F0378F = {
 			isa = PBXGroup;
 			children = (
+				3BC5C42029A20E0B00B93748 /* Config.xcconfig */,
 				3BA9FE92298D360B00F0378F /* PinterestApp */,
 				3BA9FE91298D360B00F0378F /* Products */,
 			);
@@ -57,11 +66,14 @@
 		3BA9FE92298D360B00F0378F /* PinterestApp */ = {
 			isa = PBXGroup;
 			children = (
+				3BC5C42129A20F0B00B93748 /* Info.plist */,
+				3BC5C41D29A2056A00B93748 /* network */,
 				3BA9FEA82991638C00F0378F /* models */,
 				3BA9FEA72991637C00F0378F /* views */,
 				3BA9FE93298D360B00F0378F /* PinterestApp.swift */,
 				3BA9FE97298D361000F0378F /* Assets.xcassets */,
 				3BA9FE99298D361000F0378F /* Preview Content */,
+				3BC5C42229A20F8900B93748 /* Config.swift */,
 			);
 			path = PinterestApp;
 			sourceTree = "<group>";
@@ -90,6 +102,15 @@
 				3BA9FEA3298D5CA400F0378F /* PinModel.swift */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		3BC5C41D29A2056A00B93748 /* network */ = {
+			isa = PBXGroup;
+			children = (
+				3BC5C41B29A0D9B300B93748 /* APIRequest.swift */,
+				3BC5C41E29A20BB300B93748 /* ImageSearchRequest.swift */,
+			);
+			path = network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,8 +184,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BA9FEA4298D5CA400F0378F /* PinModel.swift in Sources */,
+				3BC5C41C29A0D9B300B93748 /* APIRequest.swift in Sources */,
 				3BA9FE96298D360B00F0378F /* ContentView.swift in Sources */,
 				3BA9FEA6298D5DAE00F0378F /* PinterestLazyStackView.swift in Sources */,
+				3BC5C41F29A20BB300B93748 /* ImageSearchRequest.swift in Sources */,
+				3BC5C42329A20F8900B93748 /* Config.swift in Sources */,
 				3BA9FEAA2991641A00F0378F /* PinterestView.swift in Sources */,
 				3BA9FE94298D360B00F0378F /* PinterestApp.swift in Sources */,
 			);
@@ -175,6 +199,7 @@
 /* Begin XCBuildConfiguration section */
 		3BA9FE9C298D361000F0378F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BC5C42029A20E0B00B93748 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -235,6 +260,7 @@
 		};
 		3BA9FE9D298D361000F0378F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BC5C42029A20E0B00B93748 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -298,6 +324,7 @@
 				DEVELOPMENT_TEAM = GG34S672YX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PinterestApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -327,6 +354,7 @@
 				DEVELOPMENT_TEAM = GG34S672YX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PinterestApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
