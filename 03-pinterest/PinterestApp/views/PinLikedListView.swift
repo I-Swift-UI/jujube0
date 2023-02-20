@@ -9,14 +9,19 @@ import SwiftUI
 
 struct PinLikedListView: View {
     @ObservedObject var likedPinListViewModel: LikedPinListViewModel
-    
     private let columnSize = 2
     
     private var pinModelList: [[PinItem]] {
         var list: [[PinItem]] = .init(repeating: [], count: columnSize)
+        var moderator: CGFloat = 0
         likedPinListViewModel.likedPinList.enumerated().forEach { i, item in
-            let listIndex = i % columnSize
-            list[listIndex].append(item)
+            if moderator <= 0 {
+                moderator += 1/item.widthHeightRatio
+                list[0].append(item)
+            } else {
+                moderator -= 1/item.widthHeightRatio
+                list[1].append(item)
+            }
         }
         return list
     }

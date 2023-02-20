@@ -15,9 +15,16 @@ struct PinterestView: View {
     
     private var pinModelList: [[PinItem]] {
         var list: [[PinItem]] = .init(repeating: [], count: columnSize)
+        var moderator: CGFloat = 0
         pinListViewModel.pinList.enumerated().forEach { i, item in
-            let listIndex = i % columnSize
-            list[listIndex].append(item)
+            if moderator <= 0 {
+                moderator += item.widthHeightRatio
+                list[0].append(item)
+            } else {
+                moderator -= item.widthHeightRatio
+                list[1].append(item)
+            }
+            
         }
         return list
     }
