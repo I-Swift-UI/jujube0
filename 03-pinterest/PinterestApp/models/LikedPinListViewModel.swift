@@ -9,24 +9,24 @@ import Foundation
 import Combine
 
 final class LikedPinListViewModel: ObservableObject {
+    public let objectWillChange = PassthroughSubject<UUID, Never>()
+    
     @Published private(set) var likedPinList: [PinItem]
-    var likedPinItemChangedPublisher: PassthroughSubject<UUID, Never>
     
     init(likedPinList: [PinItem] = []) {
         self.likedPinList = likedPinList
-        likedPinItemChangedPublisher = PassthroughSubject()
     }
     
     func addPinItem(_ item: PinItem) {
         var likedItem = item
         likedItem.liked = true
         likedPinList.append(likedItem)
-        likedPinItemChangedPublisher.send(item.id)
+        objectWillChange.send(item.id)
     }
     
     func removePinItem(_ item: PinItem) {
         likedPinList.removeAll { $0.id == item.id }
-        likedPinItemChangedPublisher.send(item.id)
+        objectWillChange.send(item.id)
     }
 }
 

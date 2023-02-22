@@ -25,7 +25,7 @@ struct ContentView: View {
                     Image(systemName: "heart.circle")
                 }
         }
-        .onReceive(likedPinListViewModel.likedPinItemChangedPublisher, perform: { id in
+        .onReceive(likedPinListViewModel.objectWillChange, perform: { id in
             if let index = pinListViewModel.pinList.firstIndex(where: { $0.id == id }) {
                 pinListViewModel.pinList[index].liked.toggle()
             }
