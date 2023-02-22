@@ -11,7 +11,7 @@ import Combine
 final class LikedPinListViewModel: ObservableObject {
     public let objectWillChange = PassthroughSubject<UUID, Never>()
     
-    @Published private(set) var likedPinList: [PinItem]
+    private(set) var likedPinList: [PinItem]
     
     init(likedPinList: [PinItem] = []) {
         self.likedPinList = likedPinList
